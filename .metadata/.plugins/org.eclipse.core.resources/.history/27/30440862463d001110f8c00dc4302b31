@@ -1,0 +1,29 @@
+package stepdefinitions;
+
+import hooks.BaseTest;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import pages.LoginPage;
+
+public class LoginTest extends BaseTest{
+
+	@Given("user on Login Page")
+	public void loadLoginPage()
+	{
+		driver.get("https://www.flipkart.com/account/login?ret=/");
+	}
+	
+	@When("user enter {string}")
+	public void updateMobileNumber(String mobileNumber) {
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.enterMobileNumber(mobileNumber);
+		loginPage.requestOTP();
+	}
+	
+	@Then("validate verify button")
+	public void validateVerifyButton(){
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.validateVerifyButton();
+	}
+}

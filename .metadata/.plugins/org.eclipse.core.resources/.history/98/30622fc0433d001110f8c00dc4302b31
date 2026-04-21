@@ -1,0 +1,6 @@
+package stepdefinitions;
+
+public class LoginTest {
+
+	@Given("user on Login Page")
+}
