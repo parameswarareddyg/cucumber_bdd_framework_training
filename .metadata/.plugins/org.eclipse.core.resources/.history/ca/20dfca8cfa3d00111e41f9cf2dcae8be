@@ -1,0 +1,43 @@
+package pages;
+
+import java.time.Duration;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class LoginPage {
+
+	WebDriver driver;
+	
+	public LoginPage(WebDriver driver)
+	{
+		this.driver = driver;
+	}
+	
+	By mobileNumberInput = By.xpath("//input[contains(@class,'c3Bd2c yXUQVt')]");
+	By requestOTPButton = By.xpath("//button[text()='Request OTP']");
+	By verifyButton = By.xpath("//button[text()='Verify']");
+	By verifyWarningMessage = By.xpath("//span[text()='Please enter valid Email ID/Mobile number']");
+	
+	
+	public void enterMobileNumber(String mobileNumber)
+	{
+		driver.findElement(mobileNumberInput).sendKeys(mobileNumber);
+	}
+	
+	public void requestOTP() {
+		driver.findElement(requestOTPButton).click();
+	}
+	
+	public void validateVerifyButton()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebElement vButton = wait.until(ExpectedConditions.visibilityOfElementLocated(verifyButton));
+		
+		Assert.assertTrue(vButton.isDisplayed());
+	}
+}

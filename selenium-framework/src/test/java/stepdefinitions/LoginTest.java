@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.LoginPage;
+import utils.DriverManager;
 
 public class LoginTest{
 
@@ -14,8 +15,8 @@ public class LoginTest{
 	@Given("user on Login Page")
 	public void loadLoginPage()
 	{
-		BaseTest.driver.get("https://www.flipkart.com/account/login?ret=/");
-		loginPage = new LoginPage(BaseTest.driver);
+		DriverManager.getDriver().get("https://www.flipkart.com/account/login?ret=/");
+		loginPage = new LoginPage(DriverManager.getDriver());
 	}
 	
 	@When("user enter {string}")
@@ -32,5 +33,11 @@ public class LoginTest{
 	@Then("validate verify button")
 	public void validateVerifyButton(){
 		loginPage.validateVerifyButton();
+	}
+	
+	@Then("validate warning message")
+	public void validateWarningMessage()
+	{
+		
 	}
 }

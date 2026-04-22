@@ -1,0 +1,26 @@
+package utils;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+
+public class DriverManager {
+
+	List<String> list = new List() {
+	};<>();
+	private static ThreadLocal<WebDriver> dr = new ThreadLocal<WebDriver>();
+	
+	public static void setDriver(WebDriver driver) {
+		dr.set(driver);
+	}
+	
+	public static WebDriver getDriver()
+	{
+		return dr.get();
+	}
+	
+	public static void unload()
+	{
+		dr.remove();
+	}
+}

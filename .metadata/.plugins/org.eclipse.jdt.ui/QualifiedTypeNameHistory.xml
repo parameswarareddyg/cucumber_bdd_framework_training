@@ -5,10 +5,7 @@
     <fullyQualifiedTypeName name="io.cucumber.java.After"/>
     <fullyQualifiedTypeName name="io.cucumber.java.en.Given"/>
     <fullyQualifiedTypeName name="io.cucumber.java.en.When"/>
-    <fullyQualifiedTypeName name="io.cucumber.java.en.Then"/>
     <fullyQualifiedTypeName name="hooks.BaseTest"/>
-    <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
-    <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
     <fullyQualifiedTypeName name="pages.LoginPage"/>
     <fullyQualifiedTypeName name="org.junit.Assert"/>
     <fullyQualifiedTypeName name="io.cucumber.java.en.And"/>
@@ -19,4 +16,16 @@
     <fullyQualifiedTypeName name="java.time.Duration"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.WebElement"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.ExpectedConditions"/>
+    <fullyQualifiedTypeName name="io.cucumber.java.en.Then"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+    <fullyQualifiedTypeName name="java.lang.Long"/>
+    <fullyQualifiedTypeName name="org.junit.platform.suite.api.Suite"/>
+    <fullyQualifiedTypeName name="org.junit.platform.suite.api.IncludeEngines"/>
+    <fullyQualifiedTypeName name="org.junit.platform.suite.api.SelectClasspathResource"/>
+    <fullyQualifiedTypeName name="org.junit.platform.suite.api.ConfigurationParameter"/>
+    <fullyQualifiedTypeName name="java.lang.ThreadLocal"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.LinkedList"/>
+    <fullyQualifiedTypeName name="utils.DriverManager"/>
 </qualifiedTypeNameHistroy>

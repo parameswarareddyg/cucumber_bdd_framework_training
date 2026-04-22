@@ -1,0 +1,30 @@
+package runner;
+
+import org.junit.platform.suite.api.ConfigurationParameter;
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectClasspathResource;
+import org.junit.platform.suite.api.Suite;
+
+//import org.junit.runner.RunWith;
+//
+//import io.cucumber.junit.Cucumber;
+//import io.cucumber.junit.CucumberOptions;
+
+/*@RunWith(Cucumber.class)
+@CucumberOptions(
+		features="src/test/resources/features",
+		glue = {"stepdefinitions", "hooks"},
+		plugin = {"pretty", "html:target/cucumber-report.html"},
+		monochrome = true
+		)*/
+
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("src/test/resources/features")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepdefinitions")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "hooks")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
+
+public class TestRunner {
+
+}

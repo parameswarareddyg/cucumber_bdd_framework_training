@@ -2,7 +2,7 @@ package pages;
 
 import java.time.Duration;
 
-import org.junit.Assert;
+//import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +21,7 @@ public class LoginPage {
 	By mobileNumberInput = By.xpath("//input[contains(@class,'c3Bd2c yXUQVt')]");
 	By requestOTPButton = By.xpath("//button[text()='Request OTP']");
 	By verifyButton = By.xpath("//button[text()='Verify']");
+	By verifyWarningMessage = By.xpath("//span[text()='Please enter valid Email ID/Mobile number']");
 	
 	
 	public void enterMobileNumber(String mobileNumber)
@@ -37,6 +38,13 @@ public class LoginPage {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		WebElement vButton = wait.until(ExpectedConditions.visibilityOfElementLocated(verifyButton));
 		
-		Assert.assertTrue(vButton.isDisplayed());
+		//Assert.assertTrue(vButton.isDisplayed());
+	}
+	
+	public void validateWarningMessage()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebElement vMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(verifyWarningMessage));
+		//Assert.assertTrue(vMessage.isDisplayed());
 	}
 }

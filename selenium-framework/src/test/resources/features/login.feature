@@ -8,3 +8,10 @@ Scenario Outline: Login with mobilenumber
 	Examples:
 	|mobilenumber|
 	|7842181145  |
+	|8886167838  |
+	
+Scenario: Login with Invalid Mobile Number
+	Given user on Login Page
+	When user enter "123456789"
+	And click for RequestOTP
+	Then validate warning message

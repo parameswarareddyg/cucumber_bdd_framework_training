@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import utils.DriverManager;
 
 public class BaseTest {
 	public static WebDriver driver;
@@ -12,14 +13,15 @@ public class BaseTest {
 	@Before
 	public void setUp()
 	{
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
+		DriverManager.setDriver(new ChromeDriver());
+		DriverManager.getDriver().manage().window().maximize();
 	}
 	
 	@After
 	public void teardown()
 	{
-		driver.quit();
+		DriverManager.getDriver().quit();
+		DriverManager.unload();
 	}
 
 }

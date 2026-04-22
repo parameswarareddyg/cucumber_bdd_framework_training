@@ -1,0 +1,6 @@
+package utils;
+
+public class DriverManager {
+
+	private static Webdriver driver;
+}

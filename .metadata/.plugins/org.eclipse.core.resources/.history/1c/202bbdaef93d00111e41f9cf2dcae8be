@@ -1,0 +1,10 @@
+Feature: login functionality
+Scenario Outline: Login with mobilenumber
+	Given user on Login Page
+	When user enter "<mobilenumber>"
+	And click for RequestOTP
+	Then validate verify button
+
+	Examples:
+	|mobilenumber|
+	|7842181145  |
