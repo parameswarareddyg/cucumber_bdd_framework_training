@@ -1,0 +1,92 @@
+package runner;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.FeatureWrapper;
+import io.cucumber.testng.PickleWrapper;
+import utils.ExcelUtils;
+import utils.TestContext;
+
+@CucumberOptions(
+        features = "src/test/resources/features",
+        glue = {"stepdefinitions","hooks"},
+        plugin = {"pretty","html:target/cucumber-report.html"}
+)
+public class TestNGRunner extends AbstractTestNGCucumberTests {
+
+    @Override
+    @DataProvider(parallel = true)
+    public Object[][] scenarios() {
+
+        Object[][] cucumberScenarios = super.scenarios();
+        List<Map<String, String>> excelData = ExcelUtils.readExcelData();
+
+        List<Object[]> finalList = new ArrayList<>();
+
+        for (Object[] scenario : cucumberScenarios) {
+
+            PickleWrapper pickle = (PickleWrapper) scenario[0];
+            FeatureWrapper feature = (FeatureWrapper) scenario[1];
+
+
+            // ✅ FIX: tags are String, not objects
+            boolean isExcelScenario = pickle.getPickle().getTags()
+                    .stream()
+                    .anyMatch(tag -> tag.equalsIgnoreCase("@excel"));
+            boolean isExcelScenario = false;
+            List<String> tags = pickle.getPickle().getTags();
+            for(String tag:tags)
+            {
+            	if(tag.equalsIgnoreCase("@excel"))
+            	{
+            		isExcelScenario= true;
+            	}
+            }
+
+            if (isExcelScenario) {
+                System.out.println("Inside ExcelDataCondition");
+
+                for (Map<String, String> data : excelData) {
+                    System.out.println("Mapping: " + data);
+
+                    finalList.add(new Object[]{
+                            pickle,
+                            feature,
+                            data
+                    });
+                }
+
+            } else {
+                finalList.add(new Object[]{
+                        pickle,
+                        feature,
+                        null
+                });
+            }
+        }
+
+        return finalList.toArray(new Object[0][0]);
+    }
+
+    @Test(dataProvider = "scenarios")
+    public void runScenario(PickleWrapper pickle,
+                            FeatureWrapper feature,
+                            Object data) {
+
+        // Store data safely (parallel-safe)
+        if (data != null) {
+            TestContext.setData((Map<String, String>) data);
+        } else {
+            TestContext.setData(null);
+        }
+
+        super.runScenario(pickle, feature);
+    }
+}

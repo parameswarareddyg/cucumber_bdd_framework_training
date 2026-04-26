@@ -1,4 +1,5 @@
 Feature: login functionality
+@smoke @Author_Reddy
 Scenario Outline: Login with mobilenumber
 	Given user on Login Page
 	When user enter "<mobilenumber>"
@@ -7,11 +8,17 @@ Scenario Outline: Login with mobilenumber
 
 	Examples:
 	|mobilenumber|
-	|7842181145  |
-	|8886167838  |
-	
+	|1111111111  |
+	|2222222222  |
+@smoke @Author_Lokesh
 Scenario: Login with Invalid Mobile Number
 	Given user on Login Page
 	When user enter "123456789"
 	And click for RequestOTP
 	Then validate warning message
+@excel @Author_mukhaddarshaik
+Scenario: Login with mobilenumber with ExcelData
+	Given user on Login Page
+	When user enter mobilenumber from excel
+	And click for RequestOTP
+	Then validate verify button

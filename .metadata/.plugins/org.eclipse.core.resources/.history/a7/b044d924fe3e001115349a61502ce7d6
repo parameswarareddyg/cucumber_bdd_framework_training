@@ -1,0 +1,7 @@
+package extentreports;
+
+public class ExtentReportManager {
+	
+	private static ThreadLocal<ExtentTest> et = new ThreadLocal<T>();
+
+}

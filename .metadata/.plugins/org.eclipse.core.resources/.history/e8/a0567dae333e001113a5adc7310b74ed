@@ -1,0 +1,12 @@
+package utils;
+
+import java.util.List;
+
+public class DataProvider {
+	@org.testng.annotations.DataProvider
+	public static String getData()
+	{
+		List<Map<String,String>>
+		return null;
+	}
+}

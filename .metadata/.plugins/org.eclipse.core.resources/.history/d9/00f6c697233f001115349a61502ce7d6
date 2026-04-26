@@ -1,0 +1,7 @@
+package utils;
+
+import java.util.Map;
+
+public class DataInjector {
+	public static ThreadLocal<Map<String, String>> currentData = new ThreadLocal<>();
+}

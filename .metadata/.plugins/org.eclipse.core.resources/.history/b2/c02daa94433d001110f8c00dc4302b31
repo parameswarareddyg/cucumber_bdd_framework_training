@@ -1,8 +1,0 @@
-Feature: login functionality
-Given: user on Login Page
-When : user enter  <"mobilenumber">
-Then : verify your should see verify button
-
-Example:
-|mobilenumber|
-|7842181145  |

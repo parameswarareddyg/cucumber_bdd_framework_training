@@ -1,0 +1,9 @@
+package utils;
+
+public class ScenarioIndex {
+	  private static AtomicInteger index = new AtomicInteger(0);
+
+	    public static int getAndIncrement() {
+	        return index.getAndIncrement();
+	    }
+}

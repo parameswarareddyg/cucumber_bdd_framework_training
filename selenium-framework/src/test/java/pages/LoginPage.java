@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class LoginPage {
 
 	WebDriver driver;
@@ -38,13 +40,15 @@ public class LoginPage {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		WebElement vButton = wait.until(ExpectedConditions.visibilityOfElementLocated(verifyButton));
 		
-		//Assert.assertTrue(vButton.isDisplayed());
+		assertTrue(vButton.isDisplayed());
+//		Assert.assertTrue(vButton.isDisplayed());
 	}
 	
 	public void validateWarningMessage()
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		WebElement vMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(verifyWarningMessage));
-		//Assert.assertTrue(vMessage.isDisplayed());
+		assertTrue(vMessage.isDisplayed());
+		//		Assert.assertTrue(vMessage.isDisplayed());
 	}
 }

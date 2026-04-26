@@ -1,0 +1,5 @@
+package utils;
+
+public class TestContext {
+	public static ThreadLocal<Map<String,String>> testData = new ThreadLocal<>();
+}

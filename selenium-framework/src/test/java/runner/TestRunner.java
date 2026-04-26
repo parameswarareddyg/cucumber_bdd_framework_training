@@ -2,6 +2,7 @@ package runner;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.IncludeTags;
 import org.junit.platform.suite.api.SelectClasspathResource;
 import org.junit.platform.suite.api.Suite;
 
@@ -11,14 +12,16 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 //import io.cucumber.junit.Cucumber;
 //import io.cucumber.junit.CucumberOptions;
 
-/*@RunWith(Cucumber.class)
-@CucumberOptions(
-		features="src/test/resources/features",
-		glue = {"stepdefinitions", "hooks"},
-		plugin = {"pretty", "html:target/cucumber-report.html"},
-		monochrome = true
-		)*/
+//Junit 3 TestRunner
+//@RunWith(Cucumber.class)
+//@CucumberOptions(
+//		features="src/test/resources/features",
+//		glue = {"stepdefinitions", "hooks"},
+//		plugin = {"pretty", "html:target/cucumber-report.html"},
+//		monochrome = true
+//		)
 
+//Junit 5 TestRunner
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
@@ -30,6 +33,7 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 	    key = PLUGIN_PROPERTY_NAME,
 	    value = "pretty, html:target/cucumber-report.html"
 	)
+@IncludeTags("smoke")
 public class TestRunner {
 
 }

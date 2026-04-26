@@ -1,0 +1,15 @@
+package utils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class DataProvider {
+	@org.testng.annotations.DataProvider
+	public static String getData()
+	{
+		List<Map<String,String>> dataList = new ArrayList<>();
+		
+		return null;
+	}
+}

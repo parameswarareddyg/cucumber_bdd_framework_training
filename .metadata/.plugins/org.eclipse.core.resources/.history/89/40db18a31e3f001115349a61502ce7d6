@@ -1,0 +1,17 @@
+package constants;
+
+public class FrameworkConstants {
+
+	private final static String REPORTSPATH= System.getProperty("user.dir")+"src/test/resources/reports/Report_";
+	private final static String SCREENSHOTSPATH= System.getProperty("user.dir")+"/Screenshots/";
+
+	public static String getReportspath() {
+		return REPORTSPATH;
+	}
+
+	public static String getScreenshotspath() {
+		return SCREENSHOTSPATH;
+	}
+	
+	
+}

@@ -1,0 +1,65 @@
+package runner;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+import org.testng.annotations.DataProvider;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+import utils.DataInjector;
+import utils.ExcelUtils;
+
+@CucumberOptions(
+        features = "src/test/resources/features",
+        glue = {"stepdefinitions","hooks"},
+        plugin = {"pretty","html:target/cucumber-report.html"},
+        tags = "@regression"
+)
+public class TestNGRunner extends AbstractTestNGCucumberTests {
+
+	@DataProvider(parallel = true)
+    public Object[][] scenarios() {
+		Object[][] cucumberScenarios = super.scenarios();
+	    List<Map<String, String>> excelData = ExcelUtils.readExcelData();
+
+	    List<Object[]> finalList = new ArrayList<>();
+
+	    for (Object[] scenario : cucumberScenarios) {
+
+	        String scenarioName = scenario[0].toString();
+
+	        if (scenarioName.contains("ExcelData")) {
+
+	            for (Map<String, String> data : excelData) {
+
+	                finalList.add(new Object[] {
+	                        scenario[0],
+	                        scenario[1],
+	                        data
+	                });
+	            }
+
+	        } else {
+	            finalList.add(new Object[] {scenario[0], scenario[1], null});
+	        }
+	    }
+
+	    return finalList.toArray(new Object[0][0]);
+    }
+	
+	@Override
+	@Test(dataProvider = "scenarios")
+	public void runScenario(PickleWrapper pickleWrapper,
+	                        FeatureWrapper featureWrapper,
+	                        Object data) {
+
+	    if (data != null) {
+	        TestContext.setData((Map<String, String>) data);
+	    }
+
+	    super.runScenario(pickleWrapper, featureWrapper);
+	}
+	
+}

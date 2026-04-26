@@ -1,0 +1,44 @@
+package listeners;
+
+import io.cucumber.plugin.ConcurrentEventListener;
+import io.cucumber.plugin.event.*;
+import extentreports.ExtentLogger;
+
+public class StepListener implements ConcurrentEventListener{
+
+	@Override
+	public void setEventPublisher(EventPublisher publisher) {
+		publisher.registerHandlerFor(TestStepFinished.class, event->{
+			if (event.getTestStep() instanceof PickleStepTestStep) {
+
+				PickleStepTestStep step =
+						(PickleStepTestStep) event.getTestStep();
+
+				String stepText =
+						step.getStep().getKeyword() + step.getStep().getText();
+				System.out.println("Keyword : "+step.getStep().getKeyword());
+				System.out.println("Text : "+step.getStep().getText());
+
+				switch (event.getResult().getStatus()) {
+
+				case PASSED:
+					ExtentLogger.pass(stepText);
+					break;
+
+				case FAILED:
+					ExtentLogger.fail(stepText);
+					break;
+
+				case SKIPPED:
+					ExtentLogger.skip(stepText);
+					break;
+
+				default:
+					ExtentLogger.info(stepText);
+				}
+			}
+		});
+	}
+
+
+}

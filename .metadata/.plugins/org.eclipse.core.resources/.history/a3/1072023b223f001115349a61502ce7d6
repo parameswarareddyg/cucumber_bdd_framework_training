@@ -1,0 +1,25 @@
+package extentreports;
+
+import com.aventstack.extentreports.Status;
+
+public class ExtentLogger {
+	public static void info(String message) {
+        ExtentReportManager.getExtentTest().info(message);
+    }
+
+    public static void pass(String message) {
+        ExtentReportManager.getExtentTest().pass(message);
+    }
+
+    public static void fail(String message) {
+        ExtentReportManager.getExtentTest().fail(message);
+    }
+    
+    public static void skip(String message)
+    {
+    	ExtentReportManager.getExtentTest().skip(message);
+    }
+    public static void logStep(String stepName) {
+        ExtentReportManager.getExtentTest().log(Status.INFO, stepName);
+    }
+}

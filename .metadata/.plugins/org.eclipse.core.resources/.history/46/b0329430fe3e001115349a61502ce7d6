@@ -1,0 +1,9 @@
+package extentreports;
+
+import com.aventstack.extentreports.ExtentTest;
+
+public class ExtentReportManager {
+	
+	private static ThreadLocal<ExtentTest> et = new ThreadLocal<>();
+
+}

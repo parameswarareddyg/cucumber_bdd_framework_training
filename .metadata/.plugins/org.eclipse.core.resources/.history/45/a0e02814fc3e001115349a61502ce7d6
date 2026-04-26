@@ -1,0 +1,17 @@
+package extentreports;
+
+import java.util.Objects;
+
+import com.aventstack.extentreports.ExtentReports;
+
+public class ExtentReport {
+	private static ExtentReports extentReports;
+	
+	public static void initExtentReport()
+	{
+		if(Objects.isNull(extentReports))
+		{
+			
+		}
+	}
+}

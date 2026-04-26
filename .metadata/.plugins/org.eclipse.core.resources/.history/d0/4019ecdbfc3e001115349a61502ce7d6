@@ -1,0 +1,6 @@
+package constants;
+
+public class FrameworkConstants {
+
+	private final static String REPORTSPATH= System.getProperty("user.dir")+"src/test/resources/reports/";
+}

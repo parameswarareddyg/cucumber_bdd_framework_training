@@ -1,0 +1,20 @@
+package utils;
+
+public class ScreenshotUtil {
+
+	public static String capture(WebDriver driver, String name) {
+
+        String path = System.getProperty("user.dir")
+                + "/Screenshots/" + name + "_" + System.currentTimeMillis() + ".png";
+
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        try {
+            FileUtils.copyFile(src, new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return path;
+    }
+}

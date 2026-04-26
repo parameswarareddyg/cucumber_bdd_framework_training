@@ -1,27 +1,68 @@
 package hooks;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import org.openqa.selenium.WebDriver;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+
+import extentreports.ExtentReport;
+import extentreports.ExtentReportManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import utils.BrowserContext;
+import utils.DriverFactory;
 import utils.DriverManager;
 
 public class BaseTest {
 	public static WebDriver driver;
+	ExtentReports extentReport;
+	ExtentTest extentTest;
 	
+
 	@Before
-	public void setUp()
+	public void setUp(Scenario scenario)
 	{
-		DriverManager.setDriver(new ChromeDriver());
+		String browser = BrowserContext.getBrowser();
+	    if (browser == null) {
+	        browser = "chrome";
+	    }
+		ExtentReport.createTest(scenario.getName());
+
+		extentTest = ExtentReportManager.getExtentTest();
+		for(String tag:scenario.getSourceTagNames())
+		{
+			if(!tag.startsWith("@Author_"))
+			{
+				extentTest.assignCategory(tag);
+			}
+		}
+//		extentTest.assignCategory(scenario.getSourceTagNames().toArray(new String[0]));
+        
+        for(String tag:scenario.getSourceTagNames())
+        {
+        	if(tag.startsWith("@Author_"))
+        	{
+        		String author = tag.replace("@Author_", "");
+        		extentTest.assignAuthor(author);
+        	}
+        }
+        
+        extentTest.assignDevice(browser);
+		DriverManager.setDriver(DriverFactory.initDriver(browser));
 		DriverManager.getDriver().manage().window().maximize();
+		
 	}
+	
 	
 	@After
-	public void teardown()
+	public void teardown(Scenario scenario)
 	{
-		DriverManager.getDriver().quit();
-		DriverManager.unload();
+	    DriverManager.getDriver().quit();
+	    DriverManager.unload();
 	}
+	
+
 
 }

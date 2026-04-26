@@ -1,0 +1,45 @@
+package runner;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.FeatureWrapper;
+import io.cucumber.testng.PickleWrapper;
+import utils.DataInjector;
+import utils.ExcelUtils;
+import utils.TestContext;
+
+@CucumberOptions(
+        features = "src/test/resources/features",
+        glue = {"stepdefinitions","hooks"},
+        plugin = {"pretty","html:target/cucumber-report.html"},
+        tags = "@regression"
+)
+public class TestNGRunner extends AbstractTestNGCucumberTests {
+
+	@DataProvider(parallel = true)
+    public Object[][] scenarios() {
+
+        List<Map<String, String>> excelData = ExcelUtils.getData();
+
+        Object[][] result = new Object[excelData.size()][];
+
+        for (int i = 0; i < excelData.size(); i++) {
+            result[i] = new Object[] {
+                super.scenarios()[i][0],   // PickleWrapper (scenario)
+                super.scenarios()[i][1],   // FeatureWrapper
+                excelData.get(i)           // Excel row
+            };
+        }
+        return result;
+    }
+	
+
+	
+}

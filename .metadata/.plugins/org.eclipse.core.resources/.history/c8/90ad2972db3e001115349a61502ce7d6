@@ -1,0 +1,53 @@
+package utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelUtils {
+	public static List<Map<String,String>> readExcelData()
+	{
+		List<Map<String,String>> dataList = new ArrayList<>();
+		
+		FileInputStream fileInputStream;
+		try {
+			File file = new File("src/test/resources/Excels/data.xlsx");
+			fileInputStream = new FileInputStream(file);
+			
+			XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			int rowCount = sheet.getPhysicalNumberOfRows();
+			int columnCount = sheet.getRow(0).getPhysicalNumberOfCells();
+			
+			for(int i=1;i<rowCount;i++)
+			{
+				Map<String,String> dataMap =new LinkedHashMap<>();
+				for(int j=0;j<columnCount;j++)
+				{
+					String key = sheet.getRow(0).getCell(j).getStringCellValue();
+					String value = sheet.getRow(i).getCell(j).getStringCellValue();
+					dataMap.put(key,value);
+				}
+				dataList.add(dataMap);
+			}
+			workbook.close();
+			fileInputStream.close();
+			
+		}
+		catch(Exception e)
+		{
+			e.getMessage();
+		}
+			
+		
+		return dataList;
+	}
+
+}

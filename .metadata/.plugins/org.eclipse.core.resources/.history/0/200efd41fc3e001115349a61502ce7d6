@@ -1,0 +1,29 @@
+package extentreports;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
+import com.aventstack.extentreports.ExtentReports;
+
+public class ExtentReport {
+	private static ExtentReports extentReports;
+	
+	public static void initExtentReport()
+	{
+		if(Objects.isNull(extentReports))
+		{
+			extentReports = new ExtentReports();
+			
+		}
+	}
+	
+	public static String getDateAndTime()
+	{
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd_MMM_yyyy_hh_mm_ss");
+		String formatedDate = now.format(formatter);
+
+		return formatedDate;
+	}
+}

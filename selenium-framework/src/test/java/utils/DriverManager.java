@@ -1,8 +1,5 @@
 package utils;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 
 public class DriverManager {
@@ -13,7 +10,7 @@ public class DriverManager {
 		dr.set(driver);
 	}
 	
-	public static WebDriver getDriver()
+	public static WebDriver getDriver()			
 	{
 		return dr.get();
 	}

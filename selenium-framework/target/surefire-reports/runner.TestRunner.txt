@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: runner.TestRunner
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.93 s -- in runner.TestRunner
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 13.49 s <<< FAILURE! -- in runner.TestRunner
+runner.TestRunner.Login with mobilenumber with ExcelData -- Time elapsed: 12.80 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.util.Map.get(Object)" because the return value of "java.lang.ThreadLocal.get()" is null
+	at stepdefinitions.LoginTest.updateMobileNumberFromExcel(LoginTest.java:30)
+	at ✽.user enter mobilenumber from excel(classpath:features/login.feature:22)
+

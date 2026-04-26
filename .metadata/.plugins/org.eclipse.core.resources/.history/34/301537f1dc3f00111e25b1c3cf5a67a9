@@ -1,0 +1,16 @@
+package utils;
+
+import org.openqa.selenium.WebDriver;
+
+public class DriverFactory {
+
+	private static WebDriver driver;
+	public static WebDriver initDriver(String browser)
+	{
+		if(browser.equalsIgnoreCase("chrome"))
+		{
+			driver = new ChromeDriver();
+		}
+		return driver;
+	}
+}
